@@ -2,6 +2,8 @@
   (:use midje.sweet)
   (:use [gso.objective-functions]))
 
+(def precision (/ 1 1e8))
+
 (facts 
   "about J1 function"
   (let 
@@ -16,5 +18,5 @@
        -0.02975999770667323 -0.4404918548935705 3.269463326439044 1.185275846660814 0.03200763718576478 
        -5.864187872589536E-6 0.003599520786098113 0.03312494992430833 0.0044245231361739 4.102972745826762E-5)]
     
-    (map j1 coords) => (just (map roughly expected-j1-values))))
+    (map j1 coords) => (just (map #(roughly % precision) expected-j1-values))))
 
