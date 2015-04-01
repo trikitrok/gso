@@ -5,3 +5,6 @@
 
 (defn vec-diff [v1 v2]
   (map - v1 v2))
+
+(defn norm [v1]
+  (Math/sqrt (squared-dist v1 v1)))
