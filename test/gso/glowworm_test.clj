@@ -17,7 +17,7 @@
     (let [g1 (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4} 5.0)
           g2 (glowworm/make 1 [0.5 0.5] {:gamma 0.6 :rho 0.4} 5.0)]
       (fact 
-        "the glowworm itself is not a neighbor"
+        "the glowworm is not a neighbor of itself"
         (neighbors-of g1 [g1]) => (empty [])
         (neighbors-of g1 [g1 g2]) => (just (list g2))))))
 
