@@ -1,4 +1,5 @@
-(ns gso.glowworm)
+(ns gso.glowworm
+  (:require [gso.vector-functions :as vec-fns]))
 
 (defn make [id coords params luciferin]
   (merge {:id id :coords coords :luciferin luciferin} params))
@@ -9,7 +10,7 @@
      (* gamma (obj-fn coords))))
 
 (defn- square-dist [{coords1 :coords} {coords2 :coords}]
-  (reduce + (map (comp #(* % %) -) coords1 coords2)))
+  (vec-fns/square-dist coords1 coords2))
 
 (defn- neighbor? [{:keys [vision-range] :as g1} g2]
   (and (not= g1 g2)
