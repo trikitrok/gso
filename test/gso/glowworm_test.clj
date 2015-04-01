@@ -15,9 +15,15 @@
   (facts 
     "about finding neighbors"
     (let [g1 (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4} 5.0)
-          g2 (glowworm/make 1 [0.5 0.5] {:gamma 0.6 :rho 0.4} 5.0)]
+          g2 (glowworm/make 1 [0.5 0.5] {:gamma 0.6 :rho 0.4} 6.0)
+          g3 (glowworm/make 2 [0.5 0.5] {:gamma 0.6 :rho 0.4} 5.0)]
       (fact 
         "the glowworm is not a neighbor of itself"
         (neighbors-of g1 [g1]) => (empty [])
-        (neighbors-of g1 [g1 g2]) => (just (list g2))))))
+        (neighbors-of g1 [g1 g2]) => (just (list g2)))
+      
+      (fact 
+        "a glowworm's neighbor has a greater luciferin value"
+        (neighbors-of g1 [g3]) => (empty [])
+        (neighbors-of g1 [g1 g2 g3]) => (just (list g2))))))
 
