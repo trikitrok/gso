@@ -6,8 +6,11 @@
 (defn vec-diff [v1 v2]
   (map - v1 v2))
 
-(defn squared-dist [v1 v2]
-  (reduce + (map square (vec-diff v1 v2))))
+(defn- squared-norm [v]
+  (reduce + (map square v)))
 
-(defn norm [v1]
-  (Math/sqrt (squared-dist v1 v1)))
+(defn norm [v]
+  (Math/sqrt (squared-norm v)))
+
+(defn squared-dist [v1 v2]
+  (squared-norm (vec-diff v1 v2)))

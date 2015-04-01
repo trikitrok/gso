@@ -8,7 +8,7 @@
   (facts 
     "about squared distance"
     (squared-dist [1.0 1.0] [1.0 1.0]) => 0.0
-    (squared-dist [0.0 0.0] [1.0 1.0]) => 2.0
+    (squared-dist [0.0 0.0] [1.0 1]) => 2.0
     (squared-dist [0.0 0.0 0.0] [1.0 1.0 1.0]) => 3.0
     (squared-dist [1.0 1.0] [1.0 2.0]) => 1.0)
   
@@ -19,4 +19,6 @@
   
   (facts 
     "about norm"
-    (norm [0 0]) => 0.0))
+    (norm [0 0]) => 0.0
+    (norm [1 0]) => 1.0
+    (norm [1 1]) => (Math/sqrt 2)))
