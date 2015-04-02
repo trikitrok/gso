@@ -31,10 +31,15 @@
 (defn- sum-vec [v1 v2]
   (map + v1 v2))
 
-(defn move-point [point direction distance]
-  (sum-vec point (multiply-by-scalar direction distance)))
+(defn move-point [point direction dist]
+  (sum-vec point (multiply-by-scalar direction dist)))
 
+(defn move-towards-by-dist [p1 p2 dist]
+  (move-point p1 (unit-vector p1 p2) dist))
 
+;;
+;; Preconditions and handlers
+;;
 (with-precondition! #'unit-vector
   "Precondition for unit-vector"
   :norm-0

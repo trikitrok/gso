@@ -41,4 +41,9 @@
     (move-point [0 0] [1 0] 5) => [5 0]
     (move-point [0 0] 
                 [(/ 1.0 (Math/sqrt 2.0)) (/ 1.0 (Math/sqrt 2.0))] 
-                (* 8.0 (Math/sqrt 2.0))) => [8.0 8.0]))
+                (* 8.0 (Math/sqrt 2.0))) => [8.0 8.0])
+  
+  (facts
+    "about moving point towards another points by a distance"
+    (move-towards-by-dist [0 0] [5 0] 3) => [3.0 0.0]
+    (move-towards-by-dist [0 0] [-5 -5] (* 2.0 (Math/sqrt 2.0))) => [-2.0 -2.0]))
