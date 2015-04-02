@@ -11,25 +11,22 @@
 (defn- squared-norm [v]
   (sum (map square v)))
 
-(defn diff-vec [v1 v2]
-  (map - v1 v2))
+(defn- multiply-by-scalar [v s]
+  (map (partial * s) v))
+
+(def ^:private sum-vec (partial map +))
+
+(def diff-vec (partial map -))
 
 (defn norm [v]
   (Math/sqrt (squared-norm v)))
 
-(defn squared-dist [v1 v2]
-  (sum (map squared-diff v1 v2)))
+(def squared-dist (comp sum (partial map squared-diff)))
 
 (defn unit-vector [v1 v2]
   (let [v1-v2 (diff-vec v2 v1)
         norm-v1-v2 (norm v1-v2)]
     (map #(/ % norm-v1-v2) v1-v2)))
-
-(defn- multiply-by-scalar [v s]
-  (map (partial * s) v))
-
-(defn- sum-vec [v1 v2]
-  (map + v1 v2))
 
 (defn move-point [point direction dist]
   (sum-vec point (multiply-by-scalar direction dist)))
