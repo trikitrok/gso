@@ -21,4 +21,17 @@
     "about norm"
     (norm [0 0]) => 0.0
     (norm [1 0]) => 1.0
-    (norm [1 1]) => (Math/sqrt 2)))
+    (norm [1 1]) => (Math/sqrt 2))
+  
+  (facts 
+    "about computing a unit vector"
+    (unit-vector [0 0] [1 0]) => [1.0 0.0]
+    (unit-vector [0 0] [0 1]) => [0.0 1.0]
+    (unit-vector [0 0] [1 1]) => [(/ 1.0 (Math/sqrt 2.0)) (/ 1.0 (Math/sqrt 2.0))]
+    (unit-vector [0 0] [5 5]) => [(/ 1.0 (Math/sqrt 2.0)) (/ 1.0 (Math/sqrt 2.0))]
+    
+    (fact
+      "it raises an error when origin and destination points are equal (norm 0 => division by 0)"
+      (unit-vector [1 1] [1 1]) 
+      => (throws IllegalArgumentException 
+                 "Precondition failure on unit-vector, equal origin and destination: ([1 1] [1 1])"))))
