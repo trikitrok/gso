@@ -1,6 +1,8 @@
 (ns gso.glowworm
   (:require [gso.vector-functions :as vec-fns]))
 
+(def MOVEMENT-STEP-SIZE 0.03)
+
 (defn make [id coords params luciferin]
   (merge {:id id :coords coords :luciferin luciferin} params))
 
@@ -19,3 +21,6 @@
 
 (defn neighbors-of [g glowworms]
   (filter #(neighbor? g %) glowworms))
+
+(defn move-towards [{coords1 :coords :as g1} {coords2 :coords}]
+  (assoc g1 :coords (vec-fns/move-towards-by-dist coords1 coords2 MOVEMENT-STEP-SIZE)))

@@ -11,7 +11,7 @@
 (defn- squared-norm [v]
   (sum (map square v)))
 
-(defn vec-diff [v1 v2]
+(defn diff-vec [v1 v2]
   (map - v1 v2))
 
 (defn norm [v]
@@ -21,7 +21,7 @@
   (sum (map squared-diff v1 v2)))
 
 (defn unit-vector [v1 v2]
-  (let [v1-v2 (vec-diff v2 v1)
+  (let [v1-v2 (diff-vec v2 v1)
         norm-v1-v2 (norm v1-v2)]
     (map #(/ % norm-v1-v2) v1-v2)))
 
