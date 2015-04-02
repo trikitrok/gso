@@ -3,14 +3,18 @@
 (defn- square [a]
   (* a a))
 
-(defn vec-diff [v1 v2]
-  (map - v1 v2))
+(def ^:private squared-diff (comp square -))
+
+(def ^:private sum (partial reduce +))
 
 (defn- squared-norm [v]
-  (reduce + (map square v)))
+  (sum (map square v)))
+
+(defn vec-diff [v1 v2]
+  (map - v1 v2))
 
 (defn norm [v]
   (Math/sqrt (squared-norm v)))
 
 (defn squared-dist [v1 v2]
-  (squared-norm (vec-diff v1 v2)))
+  (sum (map squared-diff v1 v2)))
