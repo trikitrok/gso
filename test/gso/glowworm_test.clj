@@ -37,6 +37,6 @@
     "about moving a glowworm towards another"
     (let [g1 (glowworm/make 0 [1.0 1.0] {:gamma 0.6 :rho 0.4 :vision-range 1.0} 5.0)
           g2 (glowworm/make 1 [2.0 2.0] {:gamma 0.6 :rho 0.4} 6.0)
-          expected-val (+ 1.0 (* MOVEMENT-STEP-SIZE (/ 1 (Math/sqrt 2))))]
+          expected-val (+ 1.0 (* movement-step-size (/ 1 (Math/sqrt 2))))]
       (move-towards g1 g2) => (assoc g1 :coords [expected-val expected-val]))))
 
