@@ -28,15 +28,21 @@
 (defn- multiply-by-scalar [v s]
   (map (partial * s) v))
 
+(defn- sum-vec [v1 v2]
+  (map + v1 v2))
+
 (defn move-point [point direction distance]
-  (map + point (multiply-by-scalar direction distance)))
+  (sum-vec point (multiply-by-scalar direction distance)))
+
 
 (with-precondition! #'unit-vector
+  "Precondition for unit-vector"
   :norm-0
   (fn [v1 v2]
     (not= v1 v2)))
 
 (with-handler! #'unit-vector
+  "Handler of unit-vector precondition norm-0"
   {:precondition :norm-0}
   (fn [e & args] 
     (throw (IllegalArgumentException. 
