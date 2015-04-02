@@ -34,4 +34,11 @@
       "it raises an error when origin and destination points are equal (norm 0 => division by 0)"
       (unit-vector [1 1] [1 1]) 
       => (throws IllegalArgumentException 
-                 "Precondition failure on unit-vector, equal origin and destination: ([1 1] [1 1])"))))
+                 "Precondition failure on unit-vector, equal origin and destination: ([1 1] [1 1])")))
+  
+  (facts 
+    "about moving a point in a direction"
+    (move-point [0 0] [1 0] 5) => [5 0]
+    (move-point [0 0] 
+                [(/ 1.0 (Math/sqrt 2.0)) (/ 1.0 (Math/sqrt 2.0))] 
+                (* 8.0 (Math/sqrt 2.0))) => [8.0 8.0]))

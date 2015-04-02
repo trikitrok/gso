@@ -25,6 +25,9 @@
         norm-v1-v2 (norm v1-v2)]
     (map #(/ % norm-v1-v2) v1-v2)))
 
+(defn move-point [point direction distance]
+  (map + point (map (partial * distance) direction)))
+
 (with-precondition! #'unit-vector
   :norm-0
   (fn [v1 v2]
