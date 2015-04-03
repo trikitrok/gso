@@ -8,16 +8,16 @@
   
   (fact 
     "it computes its luciferin using an objective function (J1 in this case)"
-    (let [g (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4} 5.0)]
+    (let [g (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4} 5.0 1.0)]
       (luciferin g obj-fns/j1) => (+ (* 5.0 (- 1.0 0.4))
                                      (* 0.6 0.9810118431238463))))
   
   (facts 
     "about finding neighbors"
-    (let [g1 (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4 :vision-range 1.0} 5.0)
-          g2 (glowworm/make 1 [0.5 0.5] {:gamma 0.6 :rho 0.4} 6.0)
-          g3 (glowworm/make 2 [0.5 0.5] {:gamma 0.6 :rho 0.4} 5.0)
-          g4 (glowworm/make 3 [1.0 1.0] {:gamma 0.6 :rho 0.4} 6.0)]
+    (let [g1 (glowworm/make 0 [0.0 0.0] {:gamma 0.6 :rho 0.4} 5.0 1.0)
+          g2 (glowworm/make 1 [0.5 0.5] {:gamma 0.6 :rho 0.4} 6.0 1.0)
+          g3 (glowworm/make 2 [0.5 0.5] {:gamma 0.6 :rho 0.4} 5.0 1.0)
+          g4 (glowworm/make 3 [1.0 1.0] {:gamma 0.6 :rho 0.4} 6.0 1.0)]
       (fact 
         "the glowworm is not a neighbor of itself"
         (neighbors-of g1 [g1]) => (empty [])
@@ -35,8 +35,18 @@
   
   (facts 
     "about moving a glowworm towards another"
-    (let [g1 (glowworm/make 0 [1.0 1.0] {:gamma 0.6 :rho 0.4 :vision-range 1.0} 5.0)
-          g2 (glowworm/make 1 [2.0 2.0] {:gamma 0.6 :rho 0.4} 6.0)
+    (let [g1 (glowworm/make 0 [1.0 1.0] {:gamma 0.6 :rho 0.4} 5.0 1.0)
+          g2 (glowworm/make 1 [2.0 2.0] {:gamma 0.6 :rho 0.4} 6.0 1.0)
           expected-val (+ 1.0 (* movement-step-size (/ 1 (Math/sqrt 2))))]
-      (move-towards g1 g2) => (assoc g1 :coords [expected-val expected-val]))))
-
+      (move-towards g1 g2) => (assoc g1 :coords [expected-val expected-val])))
+  
+  (facts 
+    "about updating its vision range"
+      (compute-vision-range 
+        (glowworm/make 0 [1.0 1.0] 
+                       {:gamma 0.6 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 1.0} 
+                       5.0 2.0) 2) => 1.0
+      (compute-vision-range 
+        (glowworm/make 0 [1.0 1.0] 
+                       {:gamma 0.6 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 3.0} 
+                       5.0 3.0) 23) => 1.5600000000000001))
