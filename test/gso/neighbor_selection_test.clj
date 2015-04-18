@@ -31,6 +31,6 @@
              :vision-range 1.0)
         neighbors [g2 g3 g4]]
 
-    (neig-select/select-neighbor neighbors g1 (constantly 0.55)) => g4
-    (neig-select/select-neighbor neighbors g1 (constantly 0.1)) => g2
-    (neig-select/select-neighbor neighbors g1 (constantly 0.35)) => g3))
+    (neig-select/select-neighbor (constantly 0.55) g1 neighbors) => g4
+    (neig-select/select-neighbor (constantly 0.1) g1 neighbors) => g2
+    (neig-select/select-neighbor (constantly 0.35) g1 neighbors) => g3))

@@ -13,7 +13,7 @@
 (defn- get-index-randomly [accumulated-probabilities rnd]
   (count (take-while #(< % rnd) accumulated-probabilities)))
 
-(defn select-neighbor [neighbors glowworm rand-fn]
+(defn select-neighbor [rand-fn glowworm neighbors]
   (nth neighbors
        (get-index-randomly
          (compute-accumulated-probabilities
