@@ -1,0 +1,5 @@
+(for [n (range 1 (count [1 2 3 4]))] (take n [1 2 3 4]))
+(for [n (range 1 (inc (count [1 2 3 4])))] (take n [1 2 3 4]))
+(reduce + (for [n (range 1 (inc (count [1 2 3 4])))] (take n [1 2 3 4])))
+(map #(partial reduce +) (for [n (range 1 (inc (count [1 2 3 4])))] (take n [1 2 3 4]))))
+(map #(reduce +  %) (for [n (range 1 (inc (count [1 2 3 4])))] (take n [1 2 3 4]))))
