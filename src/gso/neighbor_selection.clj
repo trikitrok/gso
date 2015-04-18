@@ -1,16 +1,16 @@
 (ns gso.neighbor-selection)
 
-(defn compute-probabilities [neighbors {luciferin-glowworm :luciferin}]
+(defn- compute-probabilities [neighbors {luciferin-glowworm :luciferin}]
   (let [luciferin-diffs (map #(- (:luciferin %) luciferin-glowworm) neighbors)
         sum-diffs (reduce + luciferin-diffs)]
     (map #(/ % sum-diffs) luciferin-diffs)))
 
-(defn compute-accumulated-probabilities [probabilities]
+(defn- compute-accumulated-probabilities [probabilities]
   (map #(reduce + %)
        (for [n (range 1 (inc (count probabilities)))]
          (take n probabilities))))
 
-(defn get-neighbor-index [probabilities rand-fn]
+(defn- get-neighbor-index [probabilities rand-fn]
   (let [rnd (rand-fn)
         accumulated-probabilities (compute-accumulated-probabilities probabilities)]
     (count (take-while #(< % rnd) accumulated-probabilities))))
