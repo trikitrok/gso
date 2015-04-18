@@ -9,8 +9,7 @@
   (fact 
     "it computes its luciferin using an objective function (J1 in this case)"
     (let [g (glowworm/make 
-              :id 0 
-              :coords [0.0 0.0] 
+              :coords [0.0 0.0]
               :params {:gamma 0.6 :rho 0.4} 
               :luciferin 5.0 
               :vision-range 1.0)]
@@ -20,26 +19,22 @@
   (facts 
     "about finding neighbors"
     (let [g1 (glowworm/make 
-               :id 0 
-               :coords [0.0 0.0] 
+               :coords [0.0 0.0]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 5.0 
                :vision-range 1.0)
           g2 (glowworm/make 
-               :id 1 
-               :coords [0.5 0.5] 
+               :coords [0.5 0.5]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 6.0 
                :vision-range 1.0)
           g3 (glowworm/make 
-               :id 2 
-               :coords [0.5 0.5] 
+               :coords [0.5 0.5]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 5.0 
                :vision-range 1.0)
           g4 (glowworm/make 
-               :id 3 
-               :coords [1.0 1.0] 
+               :coords [1.0 1.0]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 6.0 
                :vision-range 1.0)]
@@ -61,14 +56,12 @@
   (facts 
     "about moving a glowworm towards another"
     (let [g1 (glowworm/make 
-               :id 0 
-               :coords [1.0 1.0] 
+               :coords [1.0 1.0]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 5.0 
                :vision-range 1.0)
           g2 (glowworm/make 
-               :id 1 
-               :coords [2.0 2.0] 
+               :coords [2.0 2.0]
                :params {:gamma 0.6 :rho 0.4} 
                :luciferin 6.0 
                :vision-range 1.0)
@@ -79,8 +72,7 @@
     "about updating its vision range"
     (compute-vision-range 
       (glowworm/make 
-        :id 0 
-        :coords [1.0 1.0] 
+        :coords [1.0 1.0]
         :params {:gamma 0.6 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 1.0} 
         :luciferin 5.0 
         :vision-range 2.0) 
@@ -88,8 +80,7 @@
     
     (compute-vision-range 
       (glowworm/make 
-        :id 0 
-        :coords [1.0 1.0] 
+        :coords [1.0 1.0]
         :params {:gamma 0.6 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 3.0} 
         :luciferin 5.0 
         :vision-range 3.0) 

@@ -3,8 +3,8 @@
 
 (def movement-step-size 0.03)
 
-(defn make [& {:keys [id coords params luciferin vision-range]}]
-  (merge {:id id :coords coords :luciferin luciferin :vision-range vision-range} params))
+(defn make [& {:keys [coords params luciferin vision-range]}]
+  (merge {:coords coords :luciferin luciferin :vision-range vision-range} params))
 
 (defn luciferin 
   [{:keys [coords luciferin rho gamma]} obj-fn]
