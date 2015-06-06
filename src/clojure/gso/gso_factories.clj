@@ -19,7 +19,7 @@
         gen-next-swarm (create-gen-next-swarm-fn get-neighbors-of rand-fn)]
     (comp gen-next-swarm update-luciferin)))
 
-(defn create-gso-run-fn [get-neighbors-of rand-fn objective-fn]
+(defn create-gso-algorithm [get-neighbors-of rand-fn objective-fn]
   (let [next-swarm (create-gso-step-fn get-neighbors-of rand-fn objective-fn)]
     (fn [num-generations initial-swarm]
       (take num-generations (iterate next-swarm initial-swarm)))))

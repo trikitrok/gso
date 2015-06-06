@@ -1,9 +1,7 @@
 (ns gso.random-generation-test
   (:use midje.sweet)
-  (:require [gso.random-generation :as rng-fns]))
-
-(defn in-range? [lower-limit upper-limit num]
-  (and (>= num lower-limit) (< num upper-limit)))
+  (:require [gso.random-generation :as rng-fns]
+            [gso.test-helpers :as test-helpers]))
 
 (facts
   "about MersenneTwister generator"
@@ -28,7 +26,7 @@
   (fact
     "double-in-0-1! produces numbers in range [0, 1)"
     (let [rng (rng-fns/make-mersenne-twister-rng 4357)
-          in-range-0-1? (partial in-range? 0 1)
+          in-range-0-1? (partial test-helpers/in-range? 0 1)
           rand-sequence (take 1000 (repeatedly #(rng-fns/double-in-0-1! rng)))]
       rand-sequence => (has every? in-range-0-1?)))
 
@@ -37,7 +35,7 @@
     (let [rng (rng-fns/make-mersenne-twister-rng 4357)
           lower-limit 5
           upper-limit 10
-          in-range? (partial in-range? lower-limit upper-limit)
+          in-range? (partial test-helpers/in-range? lower-limit upper-limit)
           rand-sequence (take 1000 (repeatedly #(rng-fns/double-in-range! rng lower-limit upper-limit)))]
       rand-sequence => (has every? in-range?)))
 
