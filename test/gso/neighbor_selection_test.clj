@@ -31,6 +31,9 @@
              :vision-range 1.0)
         neighbors [g2 g3 g4]]
 
-    (ng-select/select-neighbor (constantly 0.55) g1 neighbors) => g4
-    (ng-select/select-neighbor (constantly 0.1) g1 neighbors) => g2
-    (ng-select/select-neighbor (constantly 0.35) g1 neighbors) => g3))
+    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.55))]
+      (select-neighbor g1 neighbors) => g4)
+    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.1))]
+      (select-neighbor g1 neighbors) => g2)
+    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.35))]
+      (select-neighbor g1 neighbors) => g3)))

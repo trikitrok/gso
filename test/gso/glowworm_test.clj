@@ -88,7 +88,7 @@
           glowworms [g1 g2 g3 g4]]
       (glowworm/create-next-glowworm
         ng-search/neighbors-of
-        (partial ng-select/select-neighbor (constantly 0.55))
+        (ng-select/make-neighbor-selection-fn (constantly 0.55))
         g1
         glowworms) => (glowworm/make
                         :coords [0.03 0.0]

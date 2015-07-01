@@ -9,7 +9,7 @@
   (fn [swarm]
     (map #(glowworm/create-next-glowworm
            get-neighbors-of
-           (partial ng-select/select-neighbor rand-fn)
+           (ng-select/make-neighbor-selection-fn rand-fn)
            %
            swarm)
          swarm)))
