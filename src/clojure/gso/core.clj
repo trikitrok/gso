@@ -1,5 +1,5 @@
 (ns gso.core
-  (:require [gso.gso-factories :as factories]
+  (:require [gso.algorithm :as gso-algorithm]
             [gso.neighbors-search :as neighbors]
             [gso.random-generation :as rng-fns]
             [gso.objective-functions :as objective-fns]
@@ -36,7 +36,7 @@
     swarm-size initial-values params rng box))
 
 (def gso-algorithm
-  (factories/create-gso-algorithm
+  (gso-algorithm/make
     neighbors/neighbors-of
     (partial rng-fns/double-in-0-1! rng)
     objective-fn))
