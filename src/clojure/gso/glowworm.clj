@@ -25,8 +25,8 @@
        (max 0.0 (+ vision-range (* beta (- maximum-neighbors num-neighbors))))))
 
 (defn create-next-glowworm
-  [get-neighbors-of select-neighbor glowworm glowworms]
-  (let [neighbors (get-neighbors-of glowworm glowworms)
+  [search-neighbors select-neighbor glowworm glowworms]
+  (let [neighbors (search-neighbors glowworm glowworms)
         neighbor (select-neighbor glowworm neighbors)
         next-glowworm (move-towards glowworm neighbor)]
     (assoc next-glowworm :vision-range (compute-vision-range glowworm (count neighbors)))))

@@ -26,7 +26,7 @@
                      :luciferin 5.0
                      :vision-range 0.2)]
 
-          update-luciferin (swarm-fns/make-update-luciferin-fn obj-fns/j1)]
+          update-luciferin (partial map (gso.glowworm/make-update-luciferin-fn obj-fns/j1))]
 
       (update-luciferin a-swarm) => [(glowworm/make
                                        :coords [4.998708752014479 4.736005383108298]

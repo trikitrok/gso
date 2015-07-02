@@ -2,14 +2,12 @@
   (:require [gso.glowworm :as glowworm]
             [gso.neighbor-selection :as ng-select]))
 
-(defn make-update-luciferin-fn [objective-fn]
-  (partial map (gso.glowworm/make-update-luciferin-fn objective-fn)))
+(defn create-next-swarm [search-neighbors update-luciferin select-neighbor swarm]
+  (->> swarm
+       update-luciferin
+       (partial map #(glowworm/create-next-glowworm search-neighbors select-neighbor % swarm))))
 
-(defn make-next-swarm-fn [get-neighbors-of rand-fn]
-  (fn [swarm]
-    (map #(glowworm/create-next-glowworm
-           get-neighbors-of
-           (ng-select/make-neighbor-selection-fn rand-fn)
-           %
-           swarm)
-         swarm)))
+(defn make-next-swarm-fn [search-neighbors rand-fn obj-fn]
+  (let [update-luciferin (partial map (gso.glowworm/make-update-luciferin-fn obj-fn))
+        select-neighbor (ng-select/make-neighbor-selection-fn rand-fn)]
+    (partial create-next-swarm search-neighbors update-luciferin select-neighbor)))
