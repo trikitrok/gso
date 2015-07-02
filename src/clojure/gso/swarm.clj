@@ -3,7 +3,7 @@
             [gso.neighbor-selection :as ng-select]))
 
 (defn make-update-luciferin-fn [objective-fn]
-  (partial map #(assoc % :luciferin (glowworm/luciferin % objective-fn))))
+  (partial map (gso.glowworm/make-update-luciferin-fn objective-fn)))
 
 (defn make-next-swarm-fn [get-neighbors-of rand-fn]
   (fn [swarm]

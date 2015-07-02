@@ -11,7 +11,12 @@
   (+ (* (- 1.0  rho) luciferin)
      (* gamma (obj-fn coords))))
 
-(defn move-towards [{coords1 :coords :as g1} {coords2 :coords}]
+(defn make-update-luciferin-fn [obj-fn]
+  (fn [glowworm] (assoc glowworm :luciferin (luciferin glowworm obj-fn))))
+
+
+(defn move-towards
+  [{coords1 :coords :as g1} {coords2 :coords}]
   (assoc g1 :coords (vec-fns/move-towards-by-dist coords1 coords2 movement-step-size)))
 
 (defn compute-vision-range 
@@ -19,7 +24,8 @@
   (min maximum-vision-range 
        (max 0.0 (+ vision-range (* beta (- maximum-neighbors num-neighbors))))))
 
-(defn create-next-glowworm [get-neighbors-of select-neighbor glowworm glowworms]
+(defn create-next-glowworm
+  [get-neighbors-of select-neighbor glowworm glowworms]
   (let [neighbors (get-neighbors-of glowworm glowworms)
         neighbor (select-neighbor glowworm neighbors)
         next-glowworm (move-towards glowworm neighbor)]
