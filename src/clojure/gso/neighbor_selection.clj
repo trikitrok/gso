@@ -12,11 +12,10 @@
        (for [n (range 1 (inc (count probabilities)))]
          (take n probabilities))))
 
-(defn- make-get-index-randomly
-  [double-in-0-1!]
-  (fn [accumulated-probabilities]
-    (count (take-while #(< % (double-in-0-1!))
-                  accumulated-probabilities))))
+(defn- get-index-randomly
+  [double-in-0-1! accumulated-probabilities]
+  (count (take-while #(< % (double-in-0-1!))
+                     accumulated-probabilities)))
 
 (defn- select-neighbor-index
   [get-index-randomly glowworm neighbors]
@@ -25,9 +24,11 @@
       accumulate-probabilities
       get-index-randomly))
 
+(defn- select-neighbor
+  [get-index-randomly glowworm neighbors]
+  (nth neighbors (select-neighbor-index get-index-randomly glowworm neighbors)))
+
 (defn make-neighbor-selection-fn
   [double-in-0-1!]
-  (let [get-index-randomly (make-get-index-randomly double-in-0-1!)]
-    (fn [glowworm neighbors]
-      (nth neighbors (select-neighbor-index get-index-randomly glowworm neighbors)))))
+  (partial select-neighbor (partial get-index-randomly double-in-0-1!)))
 
