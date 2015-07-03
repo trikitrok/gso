@@ -13,8 +13,8 @@
          (take n probabilities))))
 
 (defn- get-index-randomly
-  [double-in-0-1! accumulated-probabilities]
-  (count (take-while #(< % (double-in-0-1!))
+  [random-double-in-0-1! accumulated-probabilities]
+  (count (take-while #(< % (random-double-in-0-1!))
                      accumulated-probabilities)))
 
 (defn- select-neighbor-index
@@ -29,6 +29,6 @@
   (nth neighbors (select-neighbor-index get-index-randomly glowworm neighbors)))
 
 (defn make-neighbor-selection-fn
-  [double-in-0-1!]
-  (partial select-neighbor (partial get-index-randomly double-in-0-1!)))
+  [random-double-in-0-1!]
+  (partial select-neighbor (partial get-index-randomly random-double-in-0-1!)))
 
