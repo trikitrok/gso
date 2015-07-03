@@ -1,7 +1,7 @@
 (ns gso.glowworm
   (:require [gso.vector-functions :as vec-fns]))
 
-(def movement-step-size 0.03)
+(def ^:private movement-step-size 0.03)
 
 (defn make [& {:keys [coords params luciferin vision-range]}]
   (merge {:coords coords :luciferin luciferin :vision-range vision-range} params))

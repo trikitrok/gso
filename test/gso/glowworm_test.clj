@@ -51,7 +51,7 @@
                :params {:gamma 0.6 :rho 0.4}
                :luciferin 6.0
                :vision-range 1.0)
-          expected-val (+ 1.0 (* glowworm/movement-step-size (/ 1 (Math/sqrt 2))))]
+          expected-val 1.0212132034355965]
 
       (fact
         "when they are different"
