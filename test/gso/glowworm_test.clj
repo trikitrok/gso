@@ -3,7 +3,8 @@
   (:require [gso.glowworm :as glowworm])
   (:require [gso.objective-functions :as obj-fns])
   (:require [gso.neighbors-search :as ng-search])
-  (:require [gso.neighbor-selection :as ng-select]))
+  (:require [gso.neighbor-selection :as ng-select]
+            [gso.random-generation :as rng-fns]))
 
 (facts
   "about a glowworm"
@@ -45,8 +46,20 @@
                :params {:gamma 0.6 :rho 0.4}
                :luciferin 6.0
                :vision-range 1.0)
+          g3 (glowworm/make
+               :coords [2.0 2.0]
+               :params {:gamma 0.6 :rho 0.4}
+               :luciferin 6.0
+               :vision-range 1.0)
           expected-val (+ 1.0 (* glowworm/movement-step-size (/ 1 (Math/sqrt 2))))]
-      (glowworm/move-towards g1 g2) => (assoc g1 :coords [expected-val expected-val])))
+
+      (fact
+        "when they are different"
+        (glowworm/move-towards g1 g2) => (assoc g1 :coords [expected-val expected-val]))
+
+      (fact
+        "when they are the same"
+        (glowworm/move-towards g2 g3) => g2)))
 
   (facts
     "about updating its vision range"
@@ -79,30 +92,58 @@
     (let [g1 (glowworm/make
                :coords [0.0 0.0]
                :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
-               :luciferin 3.0
+               :luciferin 2.3886071058743075
                :vision-range 1.0)
           g2 (glowworm/make
                :coords [0.1 0.0]
                :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
-               :luciferin 5.0
+               :luciferin 3.3585261352818985
                :vision-range 1.0)
           g3 (glowworm/make
                :coords [0.0 0.1]
                :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
-               :luciferin 4.0
+               :luciferin 2.8639707100495175
                :vision-range 1.0)
           g4 (glowworm/make
                :coords [0.2 0.0]
                :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
-               :luciferin 6.0
+               :luciferin 3.775322669562844
                :vision-range 1.0)
+
           glowworms [g1 g2 g3 g4]]
+
       (glowworm/create-next-glowworm
         ng-search/neighbors-of
-        (ng-select/make-neighbor-selection-fn (constantly 0.55))
+        (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
         g1
         glowworms) => (glowworm/make
-                        :coords [0.03 0.0]
+                        :coords [0.0 0.03]
                         :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
-                        :luciferin 3.0
-                        :vision-range 1.16))))
+                        :luciferin 2.3886071058743075
+                        :vision-range 1.16)
+
+      (glowworm/create-next-glowworm
+        ng-search/neighbors-of
+        (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
+        g2
+        glowworms) => (glowworm/make
+                        :coords [0.13 0.0]
+                        :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
+                        :luciferin 3.3585261352818985
+                        :vision-range 1.32)
+
+      (glowworm/create-next-glowworm
+        ng-search/neighbors-of
+        (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
+        g3
+        glowworms) => (glowworm/make
+                        :coords [0.026832815729997475 0.08658359213500127]
+                        :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
+                        :luciferin 2.8639707100495175
+                        :vision-range 1.24)
+
+      (glowworm/create-next-glowworm
+        ng-search/neighbors-of
+        (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
+        g4
+        glowworms) => (assoc g4 :vision-range 1.4))))
