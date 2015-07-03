@@ -6,7 +6,7 @@
   (take num-generations (iterate next-swarm initial-swarm)))
 
 (defn make
-  [neighbors-fn rand-fn obj-fn]
-  (partial run (swarm-fns/make-next-swarm-fn neighbors-fn rand-fn obj-fn)))
+  [neighbors-fn random-double-in-0-1! obj-fn]
+  (partial run (swarm-fns/make-next-swarm-fn neighbors-fn random-double-in-0-1! obj-fn)))
 
 
