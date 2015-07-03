@@ -15,10 +15,13 @@
   (fn [glowworm] (assoc glowworm :luciferin (luciferin glowworm obj-fn))))
 
 (defn move-towards
-  [{coords1 :coords :as g1} {coords2 :coords}]
-  (if (= coords1 coords2)
-    g1
-    (assoc g1 :coords (vec-fns/move-towards-by-dist coords1 coords2 movement-step-size))))
+  [{original-coords :coords :as glowworm} {other-coords :coords}]
+  (if (= original-coords other-coords)
+    glowworm
+    (assoc
+      glowworm
+      :coords
+      (vec-fns/move-towards-by-dist original-coords other-coords movement-step-size))))
 
 (defn compute-vision-range
   [{:keys [vision-range beta maximum-neighbors maximum-vision-range]} num-neighbors]
