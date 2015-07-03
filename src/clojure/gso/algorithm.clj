@@ -8,5 +8,3 @@
 (defn make
   [neighbors-fn random-double-in-0-1! obj-fn]
   (partial run (swarm-fns/make-next-swarm-creation-fn neighbors-fn random-double-in-0-1! obj-fn)))
-
-

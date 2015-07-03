@@ -7,15 +7,15 @@
 
 ;; Optimization problem data
 (def params
-  {:gamma 0.6
-   :rho 0.4
-   :beta 0.08
-   :maximum-neighbors 5
+  {:gamma                0.6
+   :rho                  0.4
+   :beta                 0.08
+   :maximum-neighbors    5
    :maximum-vision-range 5.0})
 
 (def initial-values
   {:vision-range 0.2
-   :luciferin 5.0})
+   :luciferin    5.0})
 
 (def seed 4357)
 
