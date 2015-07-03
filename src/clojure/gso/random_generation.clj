@@ -32,5 +32,4 @@
     (nth elements (.nextInt (:rng this) (count elements)))))
 
 (defn make-mersenne-twister-rng [seed]
-      (MersenneTwisterRandomGenerator.
-        (MersenneTwister. seed)))
+  (MersenneTwisterRandomGenerator. (MersenneTwister. seed)))
