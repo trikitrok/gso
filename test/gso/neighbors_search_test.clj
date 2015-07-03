@@ -27,18 +27,18 @@
              :vision-range 1.0)]
     (fact
       "the glowworm is not a neighbor of itself"
-      (neighbors-of g1 [g1]) => (empty [])
-      (neighbors-of g1 [g1 g2]) => (just (list g2)))
+      (search-neighbors g1 [g1]) => (empty [])
+      (search-neighbors g1 [g1 g2]) => (just (list g2)))
 
     (fact
       "a glowworm's neighbor has a greater luciferin value"
-      (neighbors-of g1 [g3]) => (empty [])
-      (neighbors-of g1 [g1 g2 g3]) => (just (list g2)))
+      (search-neighbors g1 [g3]) => (empty [])
+      (search-neighbors g1 [g1 g2 g3]) => (just (list g2)))
 
     (fact
       "a glowworm's neighbor is within its vision range"
-      (neighbors-of g1 [g4]) => (empty [])
-      (neighbors-of g1 [g1 g2 g3 g4]) => (just (list g2))))
+      (search-neighbors g1 [g4]) => (empty [])
+      (search-neighbors g1 [g1 g2 g3 g4]) => (just (list g2))))
 
   (let
     [g1 (glowworm/make
@@ -64,7 +64,7 @@
 
      swarm [g1 g2 g3 g4]]
 
-    (neighbors-of g1 swarm) => [g2 g3 g4]
-    (neighbors-of g2 swarm) => [g4]
-    (neighbors-of g3 swarm) => [g2 g4]
-    (neighbors-of g4 swarm) => []))
+    (search-neighbors g1 swarm) => [g2 g3 g4]
+    (search-neighbors g2 swarm) => [g4]
+    (search-neighbors g3 swarm) => [g2 g4]
+    (search-neighbors g4 swarm) => []))

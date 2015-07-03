@@ -9,5 +9,5 @@
        (< (:luciferin g1) (:luciferin g2))
        (< (squared-dist g1 g2) (* vision-range vision-range))))
 
-(defn neighbors-of [g glowworms]
+(defn search-neighbors [g glowworms]
   (filter #(neighbor? g %) glowworms))

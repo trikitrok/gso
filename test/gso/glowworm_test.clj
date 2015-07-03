@@ -113,7 +113,7 @@
           glowworms [g1 g2 g3 g4]]
 
       (glowworm/create-next-glowworm
-        ng-search/neighbors-of
+        ng-search/search-neighbors
         (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
         g1
         glowworms) => (glowworm/make
@@ -123,7 +123,7 @@
                         :vision-range 1.16)
 
       (glowworm/create-next-glowworm
-        ng-search/neighbors-of
+        ng-search/search-neighbors
         (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
         g2
         glowworms) => (glowworm/make
@@ -133,7 +133,7 @@
                         :vision-range 1.32)
 
       (glowworm/create-next-glowworm
-        ng-search/neighbors-of
+        ng-search/search-neighbors
         (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
         g3
         glowworms) => (glowworm/make
@@ -143,7 +143,7 @@
                         :vision-range 1.24)
 
       (glowworm/create-next-glowworm
-        ng-search/neighbors-of
+        ng-search/search-neighbors
         (ng-select/make-neighbor-selection-fn (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437)))
         g4
         glowworms) => (assoc g4 :vision-range 1.4))))

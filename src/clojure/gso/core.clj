@@ -37,7 +37,7 @@
 
 (def gso-algorithm
   (gso-algorithm/make
-    neighbors/neighbors-of
+    neighbors/search-neighbors
     (partial rng-fns/double-in-0-1! rng)
     objective-fn))
 
