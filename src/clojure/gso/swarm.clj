@@ -7,7 +7,7 @@
        update-luciferin
        (map #(glowworm/create-next-glowworm search-neighbors select-neighbor % swarm))))
 
-(defn make-next-swarm-fn [search-neighbors random-double-in-0-1! obj-fn]
+(defn make-next-swarm-creation-fn [search-neighbors random-double-in-0-1! obj-fn]
   (let [update-luciferin (partial map (gso.glowworm/make-update-luciferin-fn obj-fn))
         select-neighbor (ng-select/make-neighbor-selection-fn random-double-in-0-1!)]
     (partial create-next-swarm search-neighbors update-luciferin select-neighbor)))

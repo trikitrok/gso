@@ -79,7 +79,7 @@
                      :luciferin 3.775322669562844
                      :vision-range 1.0)]
 
-          next-swarm (swarm-fns/make-next-swarm-fn
+          next-swarm (swarm-fns/make-next-swarm-creation-fn
                        ng-search/search-neighbors
                        (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437))
                        obj-fns/j1)]
