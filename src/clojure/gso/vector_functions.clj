@@ -37,20 +37,20 @@
 ;;
 ;; Preconditions and handlers
 ;;
-(with-precondition! 
+(with-precondition!
   #'unit-vector
   "Precondition for unit-vector"
   :norm-0
   (fn [v1 v2]
     (not= v1 v2)))
 
-(with-handler! 
+(with-handler!
   #'unit-vector
   "Handler of unit-vector precondition norm-0"
   {:precondition :norm-0}
-  (fn [e & args] 
-    (throw 
-      (IllegalArgumentException. 
-        (apply str 
-               "Precondition failure on unit-vector, equal origin and destination: " 
+  (fn [e & args]
+    (throw
+      (IllegalArgumentException.
+        (apply str
+               "Precondition failure on unit-vector, equal origin and destination: "
                (vector args))))))
