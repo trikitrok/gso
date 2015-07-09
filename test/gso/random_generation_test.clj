@@ -37,20 +37,4 @@
           upper-limit 10
           in-range? (partial test-helpers/in-range? lower-limit upper-limit)
           rand-sequence (take 1000 (repeatedly #(rng-fns/double-in-range! rng lower-limit upper-limit)))]
-      rand-sequence => (has every? in-range?)))
-
-  (fact
-    "select-random-element! gets a random element from a sequence"
-    (let [rng (rng-fns/make-mersenne-twister-rng 4357)
-          elements [1 3 5]]
-      (rng-fns/select-random-element! rng elements) => 3
-      (rng-fns/select-random-element! rng elements) => 1
-      (rng-fns/select-random-element! rng elements) => 1
-      (rng-fns/select-random-element! rng elements) => 1
-      (rng-fns/select-random-element! rng elements) => 3
-      (rng-fns/select-random-element! rng elements) => 3
-      (rng-fns/select-random-element! rng elements) => 3
-      (rng-fns/select-random-element! rng elements) => 5
-      (rng-fns/select-random-element! rng elements) => 3
-      (rng-fns/select-random-element! rng elements) => 1
-      (rng-fns/select-random-element! rng elements) => 1)))
+      rand-sequence => (has every? in-range?))))
