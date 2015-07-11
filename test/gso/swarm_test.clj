@@ -85,25 +85,25 @@
                        obj-fns/j1)]
 
       (next-swarm a-swarm) => [(glowworm/make
-                                 :coords [0.03 0.0]
+                                 :coords [0.0 0.03]
                                  :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
                                  :luciferin 2.021771369398892
-                                 :vision-range 1.08)
+                                 :vision-range 1.16)
 
                                (glowworm/make
                                  :coords [0.13 0.0]
                                  :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
                                  :luciferin 2.3736418164510376
-                                 :vision-range 1.08)
+                                 :vision-range 1.32)
 
                                (glowworm/make
-                                 :coords [0.0 0.1]
+                                 :coords [0.026832815729997475 0.08658359213500127]
                                  :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
                                  :luciferin 2.182353136079228
-                                 :vision-range 1.08)
+                                 :vision-range 1.24)
 
                                (glowworm/make
-                                 :coords [0.17316718427000255 0.013416407864998738]
+                                 :coords [0.2 0.0]
                                  :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
                                  :luciferin 2.4405162713005506
-                                 :vision-range 1.16)])))
+                                 :vision-range 1.4)])))
