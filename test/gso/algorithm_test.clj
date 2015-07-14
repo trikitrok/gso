@@ -1,11 +1,6 @@
 (ns gso.algorithm-test
   (:use midje.sweet)
-  (:require [gso.algorithm :as gso-algorithm]
-            [gso.neighbors-search :as neighbors]
-            [gso.random-generation :as rng-fns]
-            [gso.objective-functions :as objective-fns]
-            [gso.swarm-factory :as swarm-factory]
-            [gso.simulation-factory :as simulation-factory]
+  (:require [gso.simulation-factory :as simulation-factory]
             [gso.test-helpers :as test-helpers]))
 
 (defn- correct-simulation-results?
