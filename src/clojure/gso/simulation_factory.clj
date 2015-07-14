@@ -16,14 +16,12 @@
 
         obj-fn (obj-fns-by-key obj-fn)
 
-        initial-swarm
-        (swarm-factory/create-random-swarm
-          swarm-size initial-values params rng boxes)
+        initial-swarm (swarm-factory/create-random-swarm
+                        swarm-size initial-values params rng boxes)
 
-        gso-algorithm
-        (gso-algorithm/make
-          neighbors/search-neighbors
-          (partial rng-fns/double-in-0-1! rng)
-          obj-fn)]
+        gso-algorithm (gso-algorithm/make
+                        neighbors/search-neighbors
+                        (partial rng-fns/double-in-0-1! rng)
+                        obj-fn)]
 
     #(gso-algorithm num-generations initial-swarm)))
