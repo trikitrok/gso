@@ -14,14 +14,20 @@
 (defn make-update-luciferin-fn [obj-fn]
   (fn [glowworm] (assoc glowworm :luciferin (luciferin glowworm obj-fn))))
 
-(defn move-towards
-  [{original-coords :coords :as glowworm} {other-coords :coords}]
-  (if (= original-coords other-coords)
+(defn- coords-to-move-to
+  [{original-coords :coords} {other-coords :coords}]
+  (vector-functions/move-towards-by-dist original-coords
+                                         other-coords
+                                         movement-step-size))
+
+(defn- at-same-location?
+  [{original-coords :coords} {other-coords :coords}]
+  (= original-coords other-coords))
+
+(defn move-towards [glowworm other-gloworm]
+  (if (at-same-location? glowworm other-gloworm)
     glowworm
-    (assoc
-      glowworm
-      :coords
-      (vector-functions/move-towards-by-dist original-coords other-coords movement-step-size))))
+    (assoc glowworm :coords (coords-to-move-to glowworm other-gloworm))))
 
 (defn compute-vision-range
   [{:keys [vision-range beta maximum-neighbors maximum-vision-range]} num-neighbors]
@@ -31,15 +37,10 @@
 (defn- update-vision-range [glowworm neighbors next-glowworm]
   (assoc next-glowworm :vision-range (compute-vision-range glowworm (count neighbors))))
 
-(defn select-glowworm-to-move-to [select-neighbor glowworm neighbors]
-  (if (empty? neighbors)
-    glowworm
-    (select-neighbor glowworm neighbors)))
-
 (defn create-next-glowworm
   [search-neighbors select-neighbor glowworm glowworms]
   (let [neighbors (search-neighbors glowworm glowworms)]
     (->> neighbors
-         (select-glowworm-to-move-to select-neighbor glowworm)
+         (select-neighbor glowworm)
          (move-towards glowworm)
          (update-vision-range glowworm neighbors))))

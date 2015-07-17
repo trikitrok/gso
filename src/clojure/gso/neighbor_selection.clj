@@ -26,7 +26,9 @@
 
 (defn- select-neighbor
   [get-index-randomly glowworm neighbors]
-  (nth neighbors (select-neighbor-index get-index-randomly glowworm neighbors)))
+  (if (empty? neighbors)
+    glowworm
+    (nth neighbors (select-neighbor-index get-index-randomly glowworm neighbors))))
 
 (defn make-neighbor-selection-fn
   [random-double-in-0-1!]
