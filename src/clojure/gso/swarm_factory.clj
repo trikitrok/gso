@@ -1,9 +1,9 @@
 (ns gso.swarm-factory
-  (:require [gso.random-generation :as rng-fns]
+  (:require [gso.random-generation :refer [double-in-range!]]
             [gso.glowworm :as glowworm]))
 
 (defn- make-coordinate [{:keys [min max]} rng]
-  (rng-fns/double-in-range! rng min max))
+  (double-in-range! rng min max))
 
 (defn- make-coordinates [boxes rng]
   (map #(make-coordinate % rng) boxes))

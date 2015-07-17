@@ -1,6 +1,6 @@
 (ns gso.objective-functions-test
   (:use midje.sweet)
-  (:use [gso.objective-functions]))
+  (:require [gso.objective-functions :refer [j1 j2 j3]]))
 
 (def precision (/ 1 1e8))
 

@@ -1,7 +1,7 @@
 (ns gso.neighbor-selection-test
   (:use midje.sweet)
-  (:use [gso.glowworm :as glowworm])
-  (:use [gso.neighbor-selection :as ng-select]))
+  (:require [gso.glowworm :as glowworm]
+            [gso.neighbor-selection :refer [make-neighbor-selection-fn]]))
 
 (facts
   "about neighbors selection"
@@ -31,9 +31,11 @@
              :vision-range 1.0)
         neighbors [g2 g3 g4]]
 
-    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.55))]
+    (let [select-neighbor (make-neighbor-selection-fn (constantly 0.55))]
       (select-neighbor g1 neighbors) => g4)
-    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.1))]
+
+    (let [select-neighbor (make-neighbor-selection-fn (constantly 0.1))]
       (select-neighbor g1 neighbors) => g2)
-    (let [select-neighbor (ng-select/make-neighbor-selection-fn (constantly 0.35))]
+
+    (let [select-neighbor (make-neighbor-selection-fn (constantly 0.35))]
       (select-neighbor g1 neighbors) => g3)))

@@ -1,7 +1,7 @@
 (ns gso.neighbors-search-test
   (:use midje.sweet)
-  (:use [gso.neighbors-search])
-  (:use [gso.glowworm :as glowworm]))
+  (:require [gso.neighbors-search :refer [search-neighbors]]
+            [gso.glowworm :as glowworm]))
 
 (facts
   "about finding neighbors"

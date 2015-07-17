@@ -1,6 +1,6 @@
 (ns gso.vector-functions-test
   (:use midje.sweet)
-  (:use [gso.vector-functions]))
+  (:require [gso.vector-functions :refer :all]))
 
 (facts 
   "about functions on vectors"

@@ -1,10 +1,10 @@
 (ns gso.swarm-test
   (:use midje.sweet)
-  (:require [gso.swarm :as swarm-fns]
-            [gso.objective-functions :as obj-fns]
+  (:require [gso.swarm :refer [make-next-swarm-creation-fn]]
+            [gso.objective-functions :as objective-functions]
             [gso.glowworm :as glowworm]
-            [gso.neighbors-search :as ng-search]
-            [gso.random-generation :as rng-fns]))
+            [gso.neighbors-search :refer [search-neighbors]]
+            [gso.random-generation :refer [make-mersenne-twister-rng double-in-0-1!]]))
 
 (facts
   "about a swarm"
@@ -33,7 +33,7 @@
                      :luciferin 6.0
                      :vision-range 1.0)]
 
-          update-luciferin (partial map (gso.glowworm/make-update-luciferin-fn obj-fns/j1))]
+          update-luciferin (partial map (glowworm/make-update-luciferin-fn objective-functions/j1))]
 
       (update-luciferin a-swarm) => [(glowworm/make
                                        :coords [0.0 0.0]
@@ -79,10 +79,10 @@
                      :luciferin 3.775322669562844
                      :vision-range 1.0)]
 
-          next-swarm (swarm-fns/make-next-swarm-creation-fn
-                       ng-search/search-neighbors
-                       (partial rng-fns/double-in-0-1! (rng-fns/make-mersenne-twister-rng 1437))
-                       obj-fns/j1)]
+          next-swarm (make-next-swarm-creation-fn
+                       search-neighbors
+                       (partial double-in-0-1! (make-mersenne-twister-rng 1437))
+                       objective-functions/j1)]
 
       (next-swarm a-swarm) => [(glowworm/make
                                  :coords [0.0 0.03]

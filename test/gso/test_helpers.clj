@@ -22,3 +22,12 @@
   (every?
     (partial local-minimum-found? min-matches tol generation)
     mins-coords))
+
+(defn coordinate-in-box? [{:keys [min max]} num]
+  (in-range? min max num))
+
+(defn each-glowworm-coordinate-in-its-box? [boxes {:keys [coords]}]
+  (every? true? (map #(coordinate-in-box? %1 %2) boxes coords)))
+
+(defn all-glowworms-in-their-box? [boxes glowworms]
+  (every? true? (map (partial each-glowworm-coordinate-in-its-box? boxes) glowworms)))

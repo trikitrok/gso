@@ -1,5 +1,5 @@
 (ns gso.glowworm
-  (:require [gso.vector-functions :as vec-fns]))
+  (:require [gso.vector-functions :as vector-functions]))
 
 (def ^:private movement-step-size 0.03)
 
@@ -21,7 +21,7 @@
     (assoc
       glowworm
       :coords
-      (vec-fns/move-towards-by-dist original-coords other-coords movement-step-size))))
+      (vector-functions/move-towards-by-dist original-coords other-coords movement-step-size))))
 
 (defn compute-vision-range
   [{:keys [vision-range beta maximum-neighbors maximum-vision-range]} num-neighbors]
