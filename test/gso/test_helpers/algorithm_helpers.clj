@@ -1,4 +1,4 @@
-(ns gso.algorithm-test-helpers)
+(ns gso.test-helpers.algorithm-helpers)
 
 (defn- nearly-equal? [actual expected tol]
   (every? #(> tol %)

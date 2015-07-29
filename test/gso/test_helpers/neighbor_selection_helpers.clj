@@ -1,4 +1,4 @@
-(ns gso.neighbor-selection-test-helpers
+(ns gso.test-helpers.neighbor-selection-helpers
   (:require [gso.neighbor-selection :refer [make-neighbor-selection-fn]]))
 
 (defn neighbor-selection-using-as-random-number [random-number]

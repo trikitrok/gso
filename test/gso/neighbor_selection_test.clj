@@ -1,7 +1,7 @@
 (ns gso.neighbor-selection-test
   (:use midje.sweet)
   (:require [gso.glowworm :as glowworm]
-            [gso.neighbor-selection-test-helpers :as test-helpers]
+            [gso.test-helpers.neighbor-selection-helpers :as helpers]
             [gso.random-generation :refer [double-in-0-1! make-mersenne-twister-rng]]))
 
 (facts
@@ -16,7 +16,7 @@
             :luciferin 3.0
             :vision-range 1.0)
 
-          select-neighbor (test-helpers/neighbor-selection-using-a-real-random-generator)]
+          select-neighbor (helpers/neighbor-selection-using-a-real-random-generator)]
 
       (select-neighbor a-glowworn []) => a-glowworn))
 
@@ -56,11 +56,11 @@
 
           neighbors [neighbor1 neighbor2 neighrbor3]]
 
-      (let [select-neighbor (test-helpers/neighbor-selection-using-as-random-number 0.55)]
+      (let [select-neighbor (helpers/neighbor-selection-using-as-random-number 0.55)]
         (select-neighbor a-glowworn neighbors) => neighrbor3)
 
-      (let [select-neighbor (test-helpers/neighbor-selection-using-as-random-number 0.1)]
+      (let [select-neighbor (helpers/neighbor-selection-using-as-random-number 0.1)]
         (select-neighbor a-glowworn neighbors) => neighbor1)
 
-      (let [select-neighbor (test-helpers/neighbor-selection-using-as-random-number 0.35)]
+      (let [select-neighbor (helpers/neighbor-selection-using-as-random-number 0.35)]
         (select-neighbor a-glowworn neighbors) => neighbor2))))

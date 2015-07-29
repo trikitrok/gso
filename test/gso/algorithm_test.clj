@@ -1,7 +1,7 @@
 (ns gso.algorithm-test
   (:use midje.sweet)
   (:require [gso.simulation-factory :as simulation-factory]
-            [gso.algorithm-test-helpers :as helpers]))
+            [gso.test-helpers.algorithm-helpers :as helpers]))
 
 (defn- correct-simulation-results?
   [run-gso-generations expected-local-minima min-matches tol]

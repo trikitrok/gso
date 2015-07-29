@@ -2,7 +2,7 @@
   (:use midje.sweet)
   (:require [gso.swarm-factory :refer [create-random-swarm]]
             [gso.random-generation :refer [make-mersenne-twister-rng]]
-            [gso.swarm-factory-test-helpers :as helpers]))
+            [gso.test-helpers.swarm-factory-helpers :as helpers]))
 
 (facts
   "about creating swarms"

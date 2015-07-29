@@ -1,5 +1,5 @@
-(ns gso.swarm-factory-test-helpers
-  (:require [gso.numeric-test-helpers :as numeric-test-helpers]))
+(ns gso.test-helpers.swarm-factory-helpers
+  (:require [gso.test-helpers.numeric-helpers :as numeric-test-helpers]))
 
 (defn- coordinate-in-box? [{:keys [min max]} num]
   (numeric-test-helpers/in-range? min max num))
