@@ -3,18 +3,12 @@
   (:require [gso.simulation-factory :as simulation-factory]
             [gso.test-helpers.algorithm-helpers :as helpers]))
 
-(defn- correct-simulation-results?
-  [run-gso-generations expected-local-minima min-matches tol]
-  (let [last-generation (last (run-gso-generations))]
-    (helpers/all-local-minima-found?
-      expected-local-minima min-matches tol last-generation)))
-
 (facts
   "About GSO algorithm"
 
   (fact
     "it finds the local minima when using J1 objective function"
-    (correct-simulation-results?
+    (helpers/correct-simulation-results?
       (simulation-factory/make-gso-simulation
         {:params          {:gamma                0.6
                            :rho                  0.4
@@ -35,7 +29,7 @@
 
   (fact
     "it finds the local minima when using J2 objective function"
-    (correct-simulation-results?
+    (helpers/correct-simulation-results?
       (simulation-factory/make-gso-simulation
         {:params          {:gamma                0.6
                            :rho                  0.4
