@@ -2,7 +2,7 @@
   (:use midje.sweet)
   (:require [gso.swarm-factory :refer [create-random-swarm]]
             [gso.random-generation :refer [make-mersenne-twister-rng]]
-            [gso.test-helpers :as test-helpers]))
+            [gso.swarm-factory-test-helpers :as helpers]))
 
 (facts
   "about creating swarms"
@@ -23,6 +23,6 @@
           rng (make-mersenne-twister-rng seed)
           initial-swarm (create-random-swarm
                           swarm-size initial-values params rng boxes)]
-      initial-swarm => (has every? #(test-helpers/contains-all-key-value-pairs-in? params %))
-      initial-swarm => (has every? #(test-helpers/contains-all-key-value-pairs-in? initial-values %))
-      (test-helpers/all-glowworms-in-their-box? boxes initial-swarm) => true?)))
+      initial-swarm => (has every? #(helpers/contains-all-key-value-pairs-in? params %))
+      initial-swarm => (has every? #(helpers/contains-all-key-value-pairs-in? initial-values %))
+      (helpers/all-glowworms-in-their-box? boxes initial-swarm) => true?)))
