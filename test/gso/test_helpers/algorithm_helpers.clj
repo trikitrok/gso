@@ -17,7 +17,7 @@
     mins-coords))
 
 (defn correct-simulation-results?
-  [run-gso-generations expected-local-minima min-matches tol]
+  [run-gso-generations & {:keys [expected-local-minima min-matches tol]}]
   (let [last-generation (last (run-gso-generations))]
     (all-local-minima-found?
       expected-local-minima min-matches tol last-generation)))

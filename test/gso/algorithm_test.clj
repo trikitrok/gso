@@ -23,9 +23,9 @@
          :boxes           [{:min -3 :max 3}
                            {:min -3 :max 3}]
          :obj-fn          :j1})
-      [[1.28, 0.0] [0.0, 1.58] [-0.46, -0.63]]
-      3
-      0.05) => true)
+      :expected-local-minima [[1.28, 0.0] [0.0, 1.58] [-0.46, -0.63]]
+      :min-matches 3
+      :tol 0.05) => true)
 
   (fact
     "it finds the local minima when using J2 objective function"
@@ -44,6 +44,6 @@
          :boxes           [{:min -1 :max 1}
                            {:min -1 :max 1}]
          :obj-fn          :j2})
-      [[-0.5, -0.5], [-0.5, 0.5], [0.5, -0.5], [0.5, 0.5]]
-      5
-      0.05)) => true)
+      :expected-local-minima [[-0.5, -0.5], [-0.5, 0.5], [0.5, -0.5], [0.5, 0.5]]
+      :min-matches 5
+      :tol 0.05)) => true)
