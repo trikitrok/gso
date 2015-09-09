@@ -4,4 +4,5 @@
                  [dire "0.5.3"]]
   :profiles {:dev {:dependencies [[midje "1.6.3"]]}}
   :source-paths      ["src/clojure"]
-  :java-source-paths ["src/java"])
+  :java-source-paths ["src/java"]
+  :main gso.core)
