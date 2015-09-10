@@ -12,7 +12,3 @@
                              simulation-results-path))]
     exit-code => 1
     (slurp simulation-results-path) => (slurp expected-simulation-results-path)))
-
-
-
-
