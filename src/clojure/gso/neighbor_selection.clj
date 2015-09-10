@@ -33,4 +33,3 @@
 (defn make-neighbor-selection-fn
   [random-double-in-0-1!]
   (partial select-neighbor (partial get-index-randomly random-double-in-0-1!)))
-

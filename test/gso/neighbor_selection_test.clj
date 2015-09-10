@@ -33,24 +33,21 @@
           neighbor1
           (glowworm/make
             :coords [0.1 0.0]
-            :params {:gamma             0.6 :rho 0.4 :beta 0.08
-                     :maximum-neighbors 5 :maximum-vision-range 5.0}
+            :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
             :luciferin 5.0
             :vision-range 1.0)
 
           neighbor2
           (glowworm/make
             :coords [0.0 0.1]
-            :params {:gamma             0.6 :rho 0.4 :beta 0.08
-                     :maximum-neighbors 5 :maximum-vision-range 5.0}
+            :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
             :luciferin 4.0
             :vision-range 1.0)
 
           neighrbor3
           (glowworm/make
             :coords [0.2 0.0]
-            :params {:gamma             0.6 :rho 0.4 :beta 0.08
-                     :maximum-neighbors 5 :maximum-vision-range 5.0}
+            :params {:gamma 0.6 :rho 0.4 :beta 0.08 :maximum-neighbors 5 :maximum-vision-range 5.0}
             :luciferin 6.0
             :vision-range 1.0)
 

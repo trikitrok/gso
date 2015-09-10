@@ -31,7 +31,7 @@
           expected-glowworm
           (glowworm/make
             :coords [4.998708752014479 4.736005383108298]
-            :params {:gamma 0.6 :rho 0.4 :maximum-vision-range 5.0
+            :params {:gamma             0.6 :rho 0.4 :maximum-vision-range 5.0
                      :maximum-neighbors 5 :beta 0.08}
             :luciferin 3.0
             :vision-range 0.2)
