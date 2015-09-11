@@ -5,7 +5,7 @@ algorithm as described in the original paper from:
 Krishnanand, K.N. and Ghose, D.,
 "Glowworm swarm optimization for simultaneous capture of multiple local optima
 of multimodal functions", published in Swarm Intelligence,
-3, 2, June 2009, 87-124. (http://dl.acm.org/citation.cfm?id=1542054)
+3, 2, June 2009, 87-124. (http://natcomp.liacs.nl/SWI/papers/Glowworm%20swarm%20optimization/Glowworm%20swarm%20optimization%20for%20simultaneous%20capture.pdf)
 <br>
 
 This project uses [Midje](https://github.com/marick/Midje/).
