@@ -1,8 +1,8 @@
 (ns gso.objective-functions)
 
-(defn- pow [x y] (Math/pow x y))
+(defmacro pow [x y] `(Math/pow ~x ~y))
 
-(defn- sin [x] (Math/sin x))
+(defmacro sin [x] `(Math/sin ~x))
 
 (defn- square [x] (* x x))
 
