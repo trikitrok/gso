@@ -2,10 +2,10 @@
 A Clojure implementation of the Glowworm Swarm Optimization
 algorithm as described in the original paper from:
 <br><br>
-Krishnanand, K.N. and Ghose, D.,
+[Krishnanand, K.N. and Ghose, D.,
 "Glowworm swarm optimization for simultaneous capture of multiple local optima
 of multimodal functions", published in Swarm Intelligence,
-3, 2, June 2009, 87-124. (http://natcomp.liacs.nl/SWI/papers/Glowworm%20swarm%20optimization/Glowworm%20swarm%20optimization%20for%20simultaneous%20capture.pdf)
+3, 2, June 2009, 87-124.](http://natcomp.liacs.nl/SWI/papers/Glowworm%20swarm%20optimization/Glowworm%20swarm%20optimization%20for%20simultaneous%20capture.pdf)
 <br>
 
 This project uses [Midje](https://github.com/marick/Midje/).
